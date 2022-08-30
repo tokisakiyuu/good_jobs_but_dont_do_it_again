@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { default as NextImage } from 'next/Image'
+import { default as NextImage } from 'next/image'
 import { useRouter } from 'next/router'
 import { css } from '@emotion/css'
 
@@ -16,7 +16,10 @@ const KeywordPage: NextPage = () => {
         const ctx = canvasRef.current.getContext('2d')
         if (ctx) {
           draw(ctx, keyword)
-            .then(() => setImgSrc(canvasRef.current?.toDataURL()))
+            .then(() => {
+              const src = canvasRef.current?.toDataURL()
+              src && setImgSrc(src)
+            })
         }
       }
     }
